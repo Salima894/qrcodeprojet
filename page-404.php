@@ -39,7 +39,7 @@
                 <h1 class="font-150 text-theme-colored mt-0 mb-0"><i class="fa fa-map-signs text-gray-silver"></i>404!</h1>
                 <h2 class="mt-0">Oops! Page non trouvée</h2>
                 <p>La page que vous cherchiez n'a pas pu être trouvée.</p>
-                <a class="btn btn-border btn-gray btn-transparent " href="index.html">Returner vers l'Accueil</a>
+                <a class="btn btn-border btn-gray btn-transparent " href="index.php">Returner vers l'Accueil</a>
               </div>
             </div>
           </div>

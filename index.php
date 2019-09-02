@@ -98,7 +98,7 @@
 				                <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-white"></i> <a class="text-white" href="#">Téléphone : +212 (0)6 19 18 10 68</a> </li>
                 <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-white"></i> <a class="text-white" href="#">Info@SZM.com  </a> </li>
                 <li class="sm-display-block mt-sm-10 mb-sm-10">
-                  <a class="bg-light p-5 text-theme-colored font-11 pl-10 pr-10"  href="contact.html">Contactez-nous</a>
+                  <a class="bg-light p-5 text-theme-colored font-11 pl-10 pr-10"  href="contact.php">Contactez-nous</a>
                 </li>
               </ul>
             </div>
@@ -465,7 +465,7 @@
                   data-splitin="none" 
                   data-splitout="none" 
                   data-responsive_offset="on"
-                  style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-colored btn-lg btn-theme-colored pl-20 pr-20" href="contact.html">Contactez-ous</a> 
+                  style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-colored btn-lg btn-theme-colored pl-20 pr-20" href="contact.php">Contactez-ous</a> 
                 </div>
               </li>
             </ul>
@@ -586,7 +586,7 @@
                 </ul>
               </div>
               <h5 class="mt-30"><i class="fa fa-pencil-square-o text-theme-colored"></i> Vous avez besoin d'aide?</h5>
-              <a href="contact.html" class="btn btn-dark btn-theme-colored mt-15" >Contactez-nous</a>
+              <a href="contact.php" class="btn btn-dark btn-theme-colored mt-15" >Contactez-nous</a>
  
             </div>
           </div>
@@ -734,7 +734,7 @@
                 <div class="pt-40 pb-60">
                   <h3 class="package-type mt-40">Service</h3>
                   <p>Nos experts vous offre un service personnalisé!</p>
-                  <a class="btn btn-colored btn-theme-colored text-uppercase" href="index.html">Lire Plus</a><br>
+                  <a class="btn btn-colored btn-theme-colored text-uppercase" href="index.php">Lire Plus</a><br>
                 </div>
               </div>
             </div>
@@ -744,7 +744,7 @@
                 <div class="pt-40 pb-60">
                   <h3 class="package-type mt-40">Pris</h3>
                   <p>Nous veillons à vous offrir des prix compétitifs !</p>
-                  <a class="btn btn-colored btn-theme-colored text-uppercase" href="index.html">Lire Plus</a><br>
+                  <a class="btn btn-colored btn-theme-colored text-uppercase" href="index.php">Lire Plus</a><br>
                 </div>
               </div>
             </div>
@@ -788,7 +788,7 @@ En vous offrant un accompagnement tout au long de votre projet, et en intervenan
           <h3 class="text-white">Notre devise est la satisfaction de notre clientèle,<br> 
 pour cela on met tout en œuvre pour <br>
 accompagnerINSCRIPTION.</h3>
-          <a class="btn btn-gray btn-theme-colored btn-lg" href="contact.html">Contactez-nous</a>
+          <a class="btn btn-gray btn-theme-colored btn-lg" href="contact.php">Contactez-nous</a>
         </div>
       </div>
     </div>

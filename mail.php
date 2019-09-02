@@ -51,7 +51,7 @@
                 document.getElementById('num').innerHTML=n;
             },1000);
             window.setTimeout(function(){
-                window.location.replace("index.html");
+                window.location.replace("index.php");
 				
             },5000);
         </script>

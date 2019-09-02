@@ -171,7 +171,7 @@ input[type="radio"]:disabled + .label-text:before{
 				                <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-white"></i> <a class="text-white" href="#">Téléphone : +212 (0)6 19 18 10 68</a> </li>
                 <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-white"></i> <a class="text-white" href="#">Info@SZM.com  </a> </li>
                 <li class="sm-display-block mt-sm-10 mb-sm-10">
-                  <a class="bg-light p-5 text-theme-colored font-11 pl-10 pr-10"  href="contact.html">Contactez-nous</a>
+                  <a class="bg-light p-5 text-theme-colored font-11 pl-10 pr-10"  href="contact.php">Contactez-nous</a>
                 </li>
               </ul>
             </div>
@@ -235,14 +235,14 @@ input[type="radio"]:disabled + .label-text:before{
             //etape1: INSCRIPTION à la bdd
 			try
 {
-            $cnx=new PDO("mysql:host=localhost;dbname=monsite","root","");
+            $cnx=new PDO("mysql:host=localhost;dbname=howtoqr","root","");
 			}
 catch(Exception $e)
 {
         die('Erreur : '.$e->getMessage());
-}
+}                                                  
             //etape2: preparer la requete sql
-            $req=$cnx->prepare("select email, mdp from connexion where  email =:email and motdepasse =:mdp");
+            $req=$cnx->prepare("select email, mdp from connexion where  email =:email and mdp =:mdp");
             //etape3: executer notre requete
             $donnesaisie=array(
                 "email"=>$_POST["form_name"],
@@ -258,30 +258,27 @@ catch(Exception $e)
 		 }	 
     }
 ?> <!--form_email1 form_mdp1--->
-<div>
+	<!--formulaire-->
    <section class="divider layer-overlay overlay-deep" data-bg-img="images/bg/bg1.jpg">
       <div class="container">
         <div class="row pt-30">
           <div class="col-md-7">
-            <h3 class="line-bottom mt-0 mb-30">INSCRIPTION </h3>
-            <form id="contact_form" name="contact_form" class="form-transparent" action="mail.php" method="POST">
-
-			  <div class="row">
-				 <div class="col-sm-6">
+            <h3 class="line-bottom mt-0 mb-30">fORMULAIRE D'INSCRIPTION </h3>
+            <form id="contact_form" name="contact_form" class="form-transparent" action="mail.php" method="POST"> 	  
+               <div class="row">
+                <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="form_email1">Email    <small>*</small></label>
-                    <input id="form_email1" name="form_email1" class="form-control" type="text" placeholder="Entrer votre email">
+                    <label for="form_email">Email <small>*</small></label>
+                    <input id="form_email" name="form_email" class="form-control " type="email"  placeholder="Entrer votre mail">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="form_mdp">Mot de passe   <small>*</small></label>
+                    <input id="form_mdp" name="form_mdp" class="form-control" type="text" placeholder="Entrer le mot de passe">
                   </div>
                 </div>
               </div>
-			    <div class="row">
-			  	 <div class="col-sm-6">
-                  <div class="form-group">
-                    <label for="form_mdp1">Mot de passe   <small>*</small></label>
-                    <input id="form_mdp1" name="form_mdp1" class="form-control" type="text" placeholder="Entrer le mot de passe">
-                  </div>
-                </div>
-				  </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-dark btn-theme-colored btn-flat mr-5"  name="submit">Submit</button>
               </div>
@@ -289,7 +286,7 @@ catch(Exception $e)
             <!-- Contact Form Validation-->
 
           </div>
-   
+    
         </div>
       </div>
     </section>
@@ -301,7 +298,7 @@ catch(Exception $e)
       <div class="col-md-12">
         <div class="call-to-action pt-60 pb-90 text-center">
           <h3 class="text-white">Pour plus d'informations</h3>
-          <a class="btn btn-gray btn-theme-colored btn-lg" href="contact.html">Contactez-nous</a>
+          <a class="btn btn-gray btn-theme-colored btn-lg" href="contact.php">Contactez-nous</a>
         </div>
       </div>
     </div>

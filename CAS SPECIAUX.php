@@ -53,7 +53,8 @@
                 <li><a href="CAS SPECIAUX.php">CAS SPECIAUX</a></li>
 			 
               </ul>
-            </li>		   <li><a href="SE CONNECTER.php">SE CONNECTER</a></li>
+            </li>	
+			<li><a href="SE CONNECTER.php">SE CONNECTER</a></li>
             <li><a href="contact.php">CONATCT</a></li>
           </ul>
         </nav>        
@@ -101,7 +102,7 @@
 				                <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-white"></i> <a class="text-white" href="+212 (0)6 61 34 34 04">Téléphone : +212 (0)6 19 18 10 68</a> </li>
                 <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-white"></i> <a class="text-white" href="Info@SZM.com"> Info@SZM.com </a> </li>
                 <li class="sm-display-block mt-sm-10 mb-sm-10">
-                  <a class="bg-light p-5 text-theme-colored font-11 pl-10 pr-10"  href="contact.html">Contactez-nous</a>
+                  <a class="bg-light p-5 text-theme-colored font-11 pl-10 pr-10"  href="contact.php">Contactez-nous</a>
                 </li>
               </ul>
             </div>
@@ -177,119 +178,184 @@ Mettez fin à votre souffrance due aux insectes nuisibles qui vous ôtent l’en
     </section>
 
 
-<?php
 
-// Sous WAMP (Windows)
+<?php 
+  include "meRaviQr/qrlib.php";
+  include "config.php";
+  if(isset($_POST['create']))
+  {
+    $qc =  $_POST['qrContent'];
+    $qrUname = $_POST['qrUname'];
+    $qrImgName = "meravi".rand();
+    if($qc=="" && $qrUname=="")
+    {
+      echo "<script>alert('Please Enter Your Name And Msg For QR Code');</script>";
+    }
+    elseif($qc=="")
+    {
+      echo "<script>alert('Please Enter QR Code Msg');</script>";
+    }
+    elseif($qrUname=="")
+    {
+      echo "<script>alert('Please Enter Your Name');</script>";
+    } 
+	//qrname qrprenom qrsex qrdate qradresse qrtel qremail qrmdp qrcmdp qrmal qrges
+	
+     $qrname = $_POST['form_name'];
+    $qrprenom = $_POST['form_prenom'];
+    $qrsex= $_POST['form_sex'];
+    $qrdate= $_POST['form_date'];
+    $qradresse= $_POST['form_adresse'];
+    $qrtel= $_POST['form_tel'];
+    $qremail =  $_POST['form_email'];
+    $qrmdp =  $_POST['form_mdp'];
+    $qrcmdp =  $_POST['form_cmdp'];
+	
+	//form_name form_prenom  form_sex form_date  form_adresse form_tel form_email form_mal form_ges    form_mdp form_cmdp
+	
+    $qrmal = $_POST['form_mal'];
+    $qrges = $_POST['form_ges'];
+   
+    
+    $qrImgName = $qrname.$qrprenom.rand();
+    if( $qrname=="" && $qrprenom=="" && $qrdate=="" && $qradresse=="" && $qrtel=="" && $qremail=="" && $qrmdp=="" && $qrcmdp==""
+	 &&  $qrmal==""  && $qrges=="" )
+    
+	{
+      echo "<script>alert('Please Enter Your informations For QR Code');</script>";
+    }
+ 
+    elseif($qrmdp != $_POST['form_cmdp'])
+    {
+      echo "<script>alert('Les 2 mots de passe sont différents');</script>";
+    }
 
- if(isset($_POST["submit"])){
-            //etape1: INSCRIPTION à la bdd
-			try
-{
-            $cnx=new PDO("mysql:host=localhost;dbname=monsite","root","");
-			}
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-}
-            //etape2: preparer la requete sql
-            $st=$cnx->prepare("insert into conges values (:nom,:prenon,:sexe,:date,:adresse,:tel,:email,:mdp,:cmdp)");
-            //etape3: executer notre requete
-            $donnesaisie=array(
-                "nom"=>$_POST["form_name"],
-                "prenon"=>$_POST["form_prenom"],
-                "sexe"=>$_POST["sex"],
-                "date"=>$_POST["form_date"],
-                "adresse"=>$_POST["form_adresse"],
-                "tel"=>$_POST["form_tel"],
-				"email"=>$_POST["form_email"],
-		        "mdp"=>$_POST["form_mdp"],
-				"cmdp"=>$_POST["form_cmdp"]
-            );
-			
-            $st->execute($donnesaisie);
-            //test si la requete est executée avec succes
-            /*
-             * rowCount() retourne le nombre de lignes affecté par la
-             * requête
-             */
-            if($st->rowCount()!=0){
-                echo"la demande congé est ajoutée";
-            }
-			
-			//table enfants
-			//etape2: preparer la requete sql
-            $st2=$cnx->prepare("insert into casspeciaux values (:mal,:gest,:mdp,:cmdp)");
-            //etape3: executer notre requete
-            $donnesaisie2=array(
-                "mal"=>$_POST["form_mal"],
-                "gest"=>$_POST["form_ges"],
-                "mdp"=>$_POST["form_mdp"],
-                "cmdp"=>$_POST["form_cmdp"]
-            );
-			
-            $st2->execute($donnesaisie2);
-            //test si la requete est executée avec succes
-            /*
-             * rowCount() retourne le nombre de lignes affecté par la
-             * requête
-             */
-            if($st2->rowCount()!=0){
-                echo"la demande congé est ajoutée";
-            }
+    else
+    {
+    $dev =  "© Dev by Me" ."\n". $_SERVER['HTTP_HOST'];
+    $final = "Mon Prénom est : " . $qrprenom ."\n".
+             "Mon Nom est : " . $qrname ."\n".
+             "Ma date de naissance est :". $qrdate ."\n".
+		     "Mon adresse est :". $qradresse ."\n".
+			 "Mon numéro de télephone est :". $qrtel ."\n".
+			 "Mon email est :". $qremail ."\n".  
+             "Sa Maladies est  : ". $qrmal ."\n".
+			 "Gestion de situation critique  : ". $qrges ."\n".
+             $dev;
+	//qrname qrprenom qrsex qrdate qradresse qrtel qremail qrmdp qrcmdp qrmal qrges
+    $qrs = QRcode::png($final,"userQr/$qrImgName.png","H","3","3");
+    $qrimage = $qrImgName.".png";
+    $workDir = $_SERVER['HTTP_HOST'];
+    $qrlink = $workDir."/qrcode".$qrImgName.".png";
+    $insQr = $meravi->insertQr($qrUname,$final,$qrimage,$qrlink);
+    $insuser = $meravi->insertuser($qrname, $qrprenom, $qrsex, $qrdate, $qradresse, $qrtel, $qremail,$qrmdp,$qrcmdp);
+	$inscasp = $meravi->insertcasspeciaux($qrmal ,$qrges);
+       
+	   if($insQr==true  &&  $insuser==true  &&    $inscasp ==true )
+    {
+          echo "<script>alert('Thank You $qrmal. Success Create Your QR Code'); window.location='CAS SPECIAUX.php?success=$qrimage';</script>";
+    }
+    else
+    {
 
-        }
+      die(mysqli_error($meravi->conn));
+    }
+  }
+ }
+  ?>
 
-?>   <!--- form_name  form_prenom  sex    form_date   form_adresse  form_tel   form_email
-					table enfant	form_pere	  form_mere     form_ecole  form_niveau  form_mdp form_cmdp
-                     table malade   form_malade        form_test	form_traitement	form_medecin  form_inf	form_mdp form_cmdp	
-					  table casspeciaux	  form_mal form_ges   form_mdp form_cmdp
-						 ----->
 
-	<!--formulaire-->
-   <section class="divider layer-overlay overlay-deep" data-bg-img="images/bg/bg1.jpg">
+
+    <section class="divider layer-overlay overlay-deep" data-bg-img="images/bg/bg1.jpg">
       <div class="container">
+
+       
         <div class="row pt-30">
           <div class="col-md-7">
-            <h3 class="line-bottom mt-0 mb-30">fORMULAIRE DE CAS SPECIAUX </h3>
-            <form id="contact_form" name="contact_form" class="form-transparent" action="mail.php" method="POST">
-                 	 <div class="row">
+
+
+
+        <?php 
+    if(isset($_GET['success']))
+    {
+    ?>
+<div class="text-center">
+    <img src="userQr/<?php echo $_GET['success']; ?>" alt="">
+             <?php   
+                $workDir = $_SERVER['HTTP_HOST'];
+             $qrlink = $workDir."/CODEQR/userQr/".$_GET['success'];
+              ?>
+          <div class="form-group">
+              <label for="form_name">Image Url <small>*</small></label>
+              <input type="text" class="form-control" value="<?php echo $qrlink; ?>" readonly>
+          </div>
+          <div class="form-group">
+              <button href="download.php?download=<?php echo $_GET['success']; ?>" class="btn btn-dark btn-theme-colored btn-flat mr-5">Download</button>
+          </div>
+          <div class="form-group">
+              <a href="CAS SPECIAUX.php" class="btn btn-dark btn-theme-colored btn-flat mr-5">Go back To generate again</a>
+          </div>
+        </div>
+  <?php
+  }
+  else
+  {
+  ?>
+
+             <!-- first-form begin  -->
+            <h3 class="line-bottom mt-0 mb-30">FORMULAIRE De l'Enfant </h3>
+            <form id="contact_form" name="contact_form" class="form-transparent" method="post" enctype="multipart/form-data">
+			  <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="form_name">UserName  <small>*</small></label>
+                    <input id="form_name" name="qrUname" class="form-control" type="text" placeholder="Entrer le Nom  " required="" value="<?php if(isset($_POST['create'])){ echo $_POST['qrUname']; } ?>">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="form_email">Content <small>*</small></label>
+                    <input id="form_email" name="qrContent" class="form-control required email" type="text" placeholder="Entrer le prénom" value="<?php if(isset($_POST['create'])){ echo $_POST['qrContent']; } ?>">
+                  </div>
+                </div>
+         </div>
+		   <!-- first-form begin  -->
+			  <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="form_name">Nom  <small>*</small></label>
-                    <input id="form_name" name="form_name" class="form-control" type="text" placeholder="Entrer le Nom  " required="">
+                    <input id="form_name" name="form_name"   type="text" placeholder="Entrer le Nom  " value="<?php if(isset($_POST['create'])){ echo $_POST['form_name']; } ?>"class="form-control"  >
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="form_email">Prénom <small>*</small></label>
-                    <input id="form_email" name="form_prenom" class="form-control required email" type="email" placeholder="Entrer le prénom">
+                    <label for="form_prenom">Prénom <small>*</small></label>
+                    <input id="form_prenom" name="form_prenom"   class="form-control required email" type="text" placeholder="Entrer le prénom" value="<?php if(isset($_POST['create'])){ echo $_POST['form_prenom']; } ?>">
                   </div>
-                </div>
+                </div> 
               </div>
-
               <div class="row">
                 <div class="col-sm-6">
-                  <div class="form-group">
-                    <label style="display: block" for="form_name">Sexe <small>*</small></label>
+                 <div class="form-group">
+                    <label style="display: block" for="form_sex">Sexe <small>*</small></label>
                    <div style="display: inline-block;margin-right:6px"> 
-				   <input id="homme" name="sex"  type="radio" style="border:0;width:30%;height:2em;margin-right:5px">Homme
-					<input id="femme" name="sex"  type="radio" style="border:0;width:30%;height:2em;margin-right:5px">Femme</div>
+				   <input id="form_sex" name="form_sex"  value="<?php if(isset($_POST['create'])){ echo $_POST['form_sex']; } ?>" type="radio" style="border:0;width:30%;height:2em;margin-right:5px">Homme
+					<input id="form_sex" name="form_sex"   value="<?php if(isset($_POST['create'])){ echo $_POST['form_sex']; } ?>" type="radio" style="border:0;width:30%;height:2em;margin-right:5px">Femme</div>
                   </div>
                 </div>
               </div>
-			  
                <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="form_date">Date de naissance  <small>*</small></label>
-                    <input id="form_date" name="form_date" class="form-control required" type="text" >
+                    <input id="form_date" name="form_date" class="form-control required" type="date" value="<?php if(isset($_POST['create'])){ echo $_POST['form_date']; } ?>">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="form_adresse">Adresse   <small>*</small></label>
-                    <input id="form_adresse" name="form_adresse" class="form-control" type="text" placeholder="Entrer le mot de passe">
-                  </div>
+                    <input id="form_adresse" name="form_adresse" class="form-control" type="text" placeholder="Entrer le mot de passe" value="<?php if(isset($_POST['create'])){ echo $_POST['form_adresse']; } ?>">
+                  </div>     
                 </div>
               </div>
 			  	  
@@ -297,15 +363,15 @@ catch(Exception $e)
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="form_tel">Numéro de telephone <small>*</small></label>
-                    <input id="form_tel" name="form_tel" class="form-control required" type="phone" >
+                    <input id="form_tel" name="form_tel" pattern="[0-9]{10}" class="form-control required" type="phone" value="<?php if(isset($_POST['create'])){ echo $_POST['form_tel']; } ?>">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="form_email">Email   <small>*</small></label>
-                    <input id="form_email" name="form_email" class="form-control" type="email" placeholder="Entrer l''email">
+                    <input id="form_email" name="form_email" class="form-control" type="email" placeholder="Entrer l''email" value="<?php if(isset($_POST['create'])){ echo $_POST['form_email']; } ?>">
                   </div>
-                </div>
+                </div>  
               </div>
 			  <div class="row">
                 <div class="col-sm-6">
@@ -313,19 +379,19 @@ catch(Exception $e)
                     <label for="form_mal">Maladies  <small>*</small></label>
                     <input id="form_mal" name="form_mal" class="form-control" type="text" placeholder="Entrer le Nom de la maladie " required="">
                   </div>
-                </div>
+                </div>                  
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="form_ges">Gestion de situation critique  <small>*</small></label>
-                    <input id="form_ges" name="form_ges" class="form-control required email" type="email" placeholder="">
-                  </div>
+                    <input id="form_ges" name="form_ges" class="form-control " type="text" placeholder="">
+                  </div>  
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="form_mdp">Mot de passe <small>*</small></label>
-                    <input id="form_mdp" name="form_mdp" class="form-control required" type="text" placeholder="Entrer le mot de passe ">
+                    <input id="form_mdp" name="form_mdp" class="form-control " type="text" placeholder="Entrer le mot de passe ">
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -338,9 +404,18 @@ catch(Exception $e)
               
 
               <div class="form-group">
-                <button type="submit" class="btn btn-dark btn-theme-colored btn-flat mr-5"  name="submit">Submit</button>
+                <button type="submit" class="btn btn-dark btn-theme-colored btn-flat mr-5"  name="create">Submit</button>
               </div>
             </form>
+			
+<?php 
+
+} 
+
+?>
+      </div>
+    </section>
+
             <!-- Contact Form Validation-->
 
           </div>
@@ -390,7 +465,7 @@ catch(Exception $e)
       <div class="col-md-12">
         <div class="call-to-action pt-60 pb-90 text-center">
           <h3 class="text-white">Pour plus d'informations</h3>
-          <a class="btn btn-gray btn-theme-colored btn-lg" href="contact.html">Contactez-nous</a>
+          <a class="btn btn-gray btn-theme-colored btn-lg" href="contact.php">Contactez-nous</a>
         </div>
       </div>
     </div>

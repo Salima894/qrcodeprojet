@@ -55,7 +55,9 @@
                 <li><a href="CAS SPECIAUX.php">CAS SPECIAUX</a></li>
 			 
               </ul>
-            </li>		   <li><a href="SE CONNECTER.php">SE CONNECTER</a></li>
+            </li>		  
+             	  <li><a href="first.php">first inscription</a></li>
+			<li><a href="SE CONNECTER.php">SE CONNECTER</a></li>
             <li><a href="contact.php">CONATCT</a></li>
           </ul>
         </nav>        
@@ -105,7 +107,7 @@
 				                <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-white"></i> <a class="text-white" href="#">Téléphone : +212 (0)6 19 18 10 68</a> </li>
                 <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-white"></i> <a class="text-white" href="#">Info@SZM.com  </a> </li>
                 <li class="sm-display-block mt-sm-10 mb-sm-10">
-                  <a class="bg-light p-5 text-theme-colored font-11 pl-10 pr-10"  href="contact.html">Contactez-nous</a>
+                  <a class="bg-light p-5 text-theme-colored font-11 pl-10 pr-10"  href="contact.php">Contactez-nous</a>
                 </li>
               </ul>
             </div>
@@ -166,20 +168,21 @@
             //etape1: INSCRIPTION à la bdd
 			try
 {
-            $cnx=new PDO("mysql:host=localhost;dbname=monsite","root","");
+            $cnx=new PDO("mysql:host=localhost;dbname=howtoqr","root","");
 			}
 catch(Exception $e)
 {
         die('Erreur : '.$e->getMessage());
 }
             //etape2: preparer la requete sql
-            $st=$cnx->prepare("insert into contact values (:nom,:email,:sujet,:phone)");
+            $st=$cnx->prepare("insert into contact values (:nom,:email,:sujet,:phone,:msg)");
             //etape3: executer notre requete
             $donnesaisie=array(
                 "nom"=>$_POST["form_name"],
                 "prenon"=>$_POST["form_email"],
                 "sujet"=>$_POST["form_subject"],
                 "phone"=>$_POST["form_phone"],
+				"msg"=>$_POST["form_message"],
     
             );
 			
@@ -232,7 +235,7 @@ catch(Exception $e)
                 </div>
               </div>          
               <div class="form-group">
-                <label for="form_name">Message</label>
+                <label for="form_message">Message</label>
                 <textarea id="form_message" name="form_message" class="form-control required" rows="5" placeholder="Entrer Message"></textarea>
               </div>
               <div class="form-group">

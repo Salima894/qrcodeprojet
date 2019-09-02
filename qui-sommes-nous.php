@@ -53,7 +53,7 @@
                 <li><a href="CAS SPECIAUX.php">CAS SPECIAUX</a></li>
 			 
               </ul>
-            </li>		  
+            </li>		
 			<li><a href="SE CONNECTER.php">SE CONNECTER</a></li>
             <li><a href="contact.php">CONATCT</a></li>
           </ul>
@@ -102,7 +102,7 @@
 				                <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-white"></i> <a class="text-white" href="#">Téléphone : +212 (0)6 19 18 10 68</a> </li>
                 <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-white"></i> <a class="text-white" href="#">Info@SZM.com  </a> </li>
                 <li class="sm-display-block mt-sm-10 mb-sm-10">
-                  <a class="bg-light p-5 text-theme-colored font-11 pl-10 pr-10" href="contact.html">Contactez-nous</a>
+                  <a class="bg-light p-5 text-theme-colored font-11 pl-10 pr-10" href="contact.php">Contactez-nous</a>
                 </li>
               </ul>
             </div>
@@ -209,7 +209,7 @@ QR (abréviation de l'anglais Quick Response) signifie que le contenu du code pe
       <div class="col-md-12">
         <div class="call-to-action pt-60 pb-90 text-center">
           <h3 class="text-white">Pour plus d'informations</h3>
-          <a class="btn btn-gray btn-theme-colored btn-lg" href="contact.html">Contactez-nous</a>
+          <a class="btn btn-gray btn-theme-colored btn-lg" href="contact.php">Contactez-nous</a>
         </div>
       </div>
     </div>
